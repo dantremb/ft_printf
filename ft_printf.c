@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 13:23:59 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:45:15 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	ft_choose_arg(char str, va_list arg)
 		len = ft_put_nbr(va_arg(arg, int));
 	else if (str == 'u')
 		len = ft_put_u_nbr(va_arg(arg, unsigned int));
-	/*else if (str == 'p')
-		len = printf("Pointer en HEX");
-	else if (str == 'X' || str == 'x')
+	else if (str == 'p')
+		len = ft_put_ptr(va_arg(arg, unsigned long ), 1);
+	/*else if (str == 'X' || str == 'x')
 		len = printf("nombre en base HEX");*/
 	return (len);
 }

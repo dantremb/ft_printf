@@ -6,11 +6,47 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 13:24:34 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:59:46 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_len(unsigned long nbr, int base)
+{
+	int	len;
+
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	while (nbr > 0)
+	{
+		nbr /= base;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_put_ptr(unsigned long ptr, int hex)
+{
+	if (hex == 1)
+	{
+		ft_put_str("0x");
+		if (ptr == 0)
+		{
+			ft_put_char('0');
+			return (3);
+		}
+	}
+	if (ptr >= 16)
+	{
+		ft_put_ptr(ptr / 16, 0);
+		ft_put_ptr(ptr % 16, 0);
+	}
+	else
+		ft_put_char("0123456789abcdef"[ptr % 16]);
+	return (ft_len(ptr, 16) + 2);
+}
 
 int	ft_put_nbr(int nbr)
 {
@@ -33,7 +69,7 @@ int	ft_put_nbr(int nbr)
 		ft_put_str("-2147483648");
 		return (11);
 	}
-	return (ft_intlen(nbr));
+	return (ft_len(nbr, 10));
 }
 
 int	ft_put_u_nbr(unsigned int nbr)
@@ -41,22 +77,5 @@ int	ft_put_u_nbr(unsigned int nbr)
 	if (nbr > 9)
 		ft_put_u_nbr(nbr / 10);
 	ft_put_char('0' + nbr % 10);
-	return (ft_intlen(nbr));
-}
-
-int	ft_intlen(long long int nbr)
-{
-	int	i;
-
-	if (nbr == 0)
-		return (1);
-	i = 0;
-	if (nbr < 0)
-		i++;
-	while (nbr)
-	{
-		nbr /= 10;
-		i++;
-	}
-	return (i);
+	return (ft_len(nbr, 10));
 }
