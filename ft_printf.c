@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 14:45:15 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:36:06 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,12 @@ int	ft_printf(const char *str, ...)
 	len = 0;
 	while (str[i])
 	{
-		//printf("\nSTART LOOP\n");
 		if (str[i] == '%')
 		{
-			//printf("\nCHOOSE ARG\n");
-			len += ft_choose_arg(str[i + 1], arg);
-			i++;
+			len += ft_choose_arg(str[i++ + 1], arg);
 		}
 		else
 		{
-			//printf("\nITS ONLY CHAR\n");
 			len += ft_put_char(str[i]);
 		}
 		i++;
@@ -57,8 +53,10 @@ int	ft_choose_arg(char str, va_list arg)
 		len = ft_put_u_nbr(va_arg(arg, unsigned int));
 	else if (str == 'p')
 		len = ft_put_ptr(va_arg(arg, unsigned long ), 1);
-	/*else if (str == 'X' || str == 'x')
-		len = printf("nombre en base HEX");*/
+	else if (str == 'x')
+		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789abcdef");
+	else if (str == 'X')
+		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789ABCDEF");
 	return (len);
 }
 
