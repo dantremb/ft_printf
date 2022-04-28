@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 23:05:00 by root              #+#    #+#             */
-/*   Updated: 2022/04/27 14:44:17 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 00:40:24 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main(void)
 {
 	int	len;
 
-	len = ft_printf("salut toi sa %s? ", "va");
-	printf(" = %i writed", len);
-	ft_printf("\n");
+	len = ft_printf("123%s789", "456");
+	printf("\033[0;32m = %i writed\033[0;37m", len);
 	return (0);
 }
