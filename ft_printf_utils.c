@@ -6,27 +6,26 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:14:23 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:36:42 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_len(unsigned long nbr, int base)
-{
-	int	len;
 
-	len = 0;
-	if (nbr < 0)
-		len++;
-	if (nbr == 0)
-		return (1);
-	while (nbr > 0)
+int	ft_put_str(char *str)
+{
+	int	i;
+
+	if (!str)
 	{
-		nbr /= base;
-		len++;
+		ft_put_str("(null)");
+		return (6);
 	}
-	return (len);
+	i = -1;
+	while (str[++i] != '\0')
+		ft_put_char(str[i]);
+	return (i);
 }
 
 int	ft_put_ptr(unsigned long ptr)
@@ -82,10 +81,19 @@ int	ft_put_nbr(int nbr)
 	return (len);
 }
 
-int	ft_put_u_nbr(unsigned int nbr)
+int	ft_len(unsigned long nbr, int base)
 {
-	if (nbr > 9)
-		ft_put_u_nbr(nbr / 10);
-	ft_put_char('0' + nbr % 10);
-	return (ft_len(nbr, 10));
+	int	len;
+
+	len = 0;
+	if (nbr < 0)
+		len++;
+	if (nbr == 0)
+		return (1);
+	while (nbr > 0)
+	{
+		nbr /= base;
+		len++;
+	}
+	return (len);
 }

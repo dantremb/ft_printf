@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 17:15:42 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:37:23 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_printf(const char *str, ...)
 			len += ft_put_char(str[i]);
 		i++;
 	}
+	va_end(arg);
 	return (len);
 }
 
@@ -45,30 +46,15 @@ int	ft_choose_arg(char str, va_list arg)
 		len = ft_put_char(str);
 	else if (str == 'd' || str == 'i')
 		len = ft_put_nbr(va_arg(arg, int));
-	else if (str == 'u')
-		len = ft_put_u_nbr(va_arg(arg, unsigned int));
 	else if (str == 'p')
 		len = ft_put_ptr(va_arg(arg, unsigned long ));
+	else if (str == 'u')
+		len = ft_put_hex(va_arg(arg, unsigned int), 10, "0123456789");
 	else if (str == 'x')
 		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789abcdef");
 	else if (str == 'X')
 		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789ABCDEF");
 	return (len);
-}
-
-int	ft_put_str(char *str)
-{
-	int	i;
-
-	if (!str)
-	{
-		ft_put_str("(null)");
-		return (6);
-	}
-	i = -1;
-	while (str[++i] != '\0')
-		ft_put_char(str[i]);
-	return (i);
 }
 
 int	ft_put_char(char src)
