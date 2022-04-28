@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 17:14:55 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:14:23 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_len(unsigned long nbr, int base)
 	return (len);
 }
 
-int	ft_put_ptr(unsigned long ptr, int base)
+int	ft_put_ptr(unsigned long ptr)
 {
 	ft_put_str("0x");
 	if (ptr == 0)
