@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 23:05:00 by root              #+#    #+#             */
-/*   Updated: 2022/04/28 16:29:22 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:52:37 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	main(void)
 	i = 1;
 	p = &i;
 	printf("\n\033[0;32mMY FUNCTION\033[0;37m\n");
-	len = ft_printf("a%c%s = %u and pointer len =%p et hex =%X", 'b', "cd", 214748364, p, 4564);
-	printf("\033[0;32m = %d writed\033[0;37m", len);
+	len = ft_printf("42 - 84 is %d", -42);
+	printf("\033[0;32m = %d writed\033[0;37m\n", len);
 	printf("\n\033[0;32m----------------------------\033[0;37m\n");
 	printf("\n\033[0;32mTRUE FUNCTION\033[0;37m\n");
-	len = printf("a%c%s = %u and pointer len =%p et hex =%X", 'b', "cd", 214748364, p, 4564);
-	printf("\033[0;32m = %i writed\033[0;37m", len);
+	len = printf("42 - 84 is %d", -42);
+	printf("\033[0;32m = %d writed\033[0;37m", len);
 	return (0);
 }

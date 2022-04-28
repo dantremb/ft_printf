@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 16:36:06 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:15:42 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
 			len += ft_choose_arg(str[i++ + 1], arg);
-		}
 		else
-		{
 			len += ft_put_char(str[i]);
-		}
 		i++;
 	}
 	return (len);
@@ -52,7 +48,7 @@ int	ft_choose_arg(char str, va_list arg)
 	else if (str == 'u')
 		len = ft_put_u_nbr(va_arg(arg, unsigned int));
 	else if (str == 'p')
-		len = ft_put_ptr(va_arg(arg, unsigned long ), 1);
+		len = ft_put_ptr(va_arg(arg, unsigned long ));
 	else if (str == 'x')
 		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789abcdef");
 	else if (str == 'X')

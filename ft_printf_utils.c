@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 16:47:57 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:14:55 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,18 @@ int	ft_len(unsigned long nbr, int base)
 		nbr /= base;
 		len++;
 	}
-	printf("\nft_len = %ld\n");
 	return (len);
 }
 
 int	ft_put_ptr(unsigned long ptr, int base)
 {
-	if (base == 1)
+	ft_put_str("0x");
+	if (ptr == 0)
 	{
-		ft_put_str("0x");
-		if (ptr == 0)
-		{
-			ft_put_char('0');
-			return (3);
-		}
+		ft_put_char('0');
+		return (3);
 	}
-	if (ptr >= 16)
-	{
-		ft_put_ptr(ptr / 16, 0);
-		ft_put_ptr(ptr % 16, 0);
-	}
-	else
-		ft_put_char("0123456789abcdef"[ptr % 16]);
+	ft_put_hex(ptr, 16, "0123456789abcdef");
 	return (ft_len(ptr, 16) + 2);
 }
 
@@ -65,12 +55,17 @@ int	ft_put_hex(unsigned long nbr, unsigned int base, char *hex)
 
 int	ft_put_nbr(int nbr)
 {
+	int	len;
+
+	len = ft_len(nbr, 10);
 	if (nbr != -2147483648)
 	{
 		if (nbr < 0)
 		{
+			len = ft_len(nbr * -1, 10);
 			ft_put_char('-');
 			ft_put_nbr(-nbr);
+			len++;
 		}
 		else
 		{
@@ -84,7 +79,7 @@ int	ft_put_nbr(int nbr)
 		ft_put_str("-2147483648");
 		return (11);
 	}
-	return (ft_len(nbr, 10));
+	return (len);
 }
 
 int	ft_put_u_nbr(unsigned int nbr)
