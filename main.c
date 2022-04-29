@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 23:05:00 by root              #+#    #+#             */
-/*   Updated: 2022/04/28 18:29:20 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:29:37 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 int	main(void)
 {
 	int		len;
-	int		i;
+	//int		i;
 	int		*p;
 
-	i = 1;
-	p = &i;
+	//i = 1;
+	p = NULL;
 	printf("\n\033[0;32mMY FUNCTION\033[0;37m\n");
-	len = ft_printf("4294967295 is %u", 294967294);
-	printf("\033[0;32m = %d writed\033[0;37m\n", len);
+	len = ft_printf(" %p %p ", p, p);	printf("\033[0;32m = %d writed\033[0;37m\n", len);
 	printf("\n\033[0;32m----------------------------\033[0;37m\n");
 	printf("\n\033[0;32mTRUE FUNCTION\033[0;37m\n");
-	len = printf("4294967295 is %u", 294967294);
+	len = printf(" %p %p ", p, p);
 	printf("\033[0;32m = %d writed\033[0;37m", len);
 	return (0);
 }

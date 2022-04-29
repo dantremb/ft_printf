@@ -6,12 +6,16 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:40 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:29:47 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:55:05 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# define DEC "0123456789"
+# define HEXU "0123456789ABCDEF"
+# define HEXL "0123456789abcdef"
 
 # include <stdarg.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/28 18:37:23 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:56:17 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	ft_choose_arg(char str, va_list arg)
 	else if (str == 'p')
 		len = ft_put_ptr(va_arg(arg, unsigned long ));
 	else if (str == 'u')
-		len = ft_put_hex(va_arg(arg, unsigned int), 10, "0123456789");
+		len = ft_put_hex(va_arg(arg, unsigned int), 10, DEC);
 	else if (str == 'x')
-		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789abcdef");
+		len = ft_put_hex(va_arg(arg, unsigned int), 16, HEXL);
 	else if (str == 'X')
-		len = ft_put_hex(va_arg(arg, unsigned int), 16, "0123456789ABCDEF");
+		len = ft_put_hex(va_arg(arg, unsigned int), 16, HEXU);
 	return (len);
 }
 
