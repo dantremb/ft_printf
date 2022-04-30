@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/29 23:06:19 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 23:44:08 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_put_char(char src, int *p)
 	*p += 1;
 }
 
-void	ft_put_str(char *str, int *p)
+void	ft_put_str(const char *str, int *p)
 {
 	int	i;
 
