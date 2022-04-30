@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/29 13:56:17 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 22:58:26 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,41 +24,31 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			len += ft_choose_arg(str[i++ + 1], arg);
+			ft_choose_arg(str[i++ + 1], arg, &len);
 		else
-			len += ft_put_char(str[i]);
+			ft_put_char(str[i], &len);
 		i++;
 	}
 	va_end(arg);
 	return (len);
 }
 
-int	ft_choose_arg(char str, va_list arg)
+void	ft_choose_arg(char str, va_list arg, int *p)
 {
-	int	len;
-
-	len = 0;
 	if (str == 's')
-		len = ft_put_str(va_arg(arg, char *));
+		ft_put_str(va_arg(arg, char *), p);
 	else if (str == 'c')
-		len = ft_put_char(va_arg(arg, int));
+		ft_put_char(va_arg(arg, int), p);
 	else if (str == '%')
-		len = ft_put_char(str);
+		ft_put_char(str, p);
 	else if (str == 'd' || str == 'i')
-		len = ft_put_nbr(va_arg(arg, int));
+		ft_put_nbr(va_arg(arg, int), p);
 	else if (str == 'p')
-		len = ft_put_ptr(va_arg(arg, unsigned long ));
+		ft_put_ptr(va_arg(arg, unsigned long ), p);
 	else if (str == 'u')
-		len = ft_put_hex(va_arg(arg, unsigned int), 10, DEC);
+		ft_put_hex(va_arg(arg, unsigned int), 10, DEC, p);
 	else if (str == 'x')
-		len = ft_put_hex(va_arg(arg, unsigned int), 16, HEXL);
+		ft_put_hex(va_arg(arg, unsigned int), 16, HEXL, p);
 	else if (str == 'X')
-		len = ft_put_hex(va_arg(arg, unsigned int), 16, HEXU);
-	return (len);
-}
-
-int	ft_put_char(char src)
-{
-	write(1, &src, 1);
-	return (1);
+		ft_put_hex(va_arg(arg, unsigned int), 16, HEXU, p);
 }

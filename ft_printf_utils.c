@@ -6,81 +6,60 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/29 13:55:34 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/04/29 22:58:00 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+void	ft_put_char(char src, int *p)
+{
+	write(1, &src, 1);
+	*p += 1;
+}
 
-int	ft_put_str(char *str)
+void	ft_put_str(char *str, int *p)
 {
 	int	i;
 
-	if (!str)
-	{
-		ft_put_str("(null)");
-		return (6);
-	}
 	i = -1;
-	while (str[++i] != '\0')
-		ft_put_char(str[i]);
-	return (i);
+	if (!str)
+		ft_put_str("(null)", p);
+	else
+		while (str[++i] != '\0')
+			ft_put_char(str[i], p);
 }
 
-int	ft_put_ptr(unsigned long ptr)
+void	ft_put_ptr(unsigned long ptr, int *p)
 {
-	ft_put_str("0x");
+	ft_put_str("0x", p);
 	if (ptr == 0)
 	{
-		ft_put_char('0');
-		return (3);
+		ft_put_char('0', p);
 	}
-	ft_put_hex(ptr, 16, HEXL);
-	return (ft_len(ptr, 16) + 2);
+	ft_put_hex(ptr, 16, HEXL, p);
 }
 
-int	ft_put_hex(unsigned long nbr, unsigned int base, char *hex)
+void	ft_put_hex(unsigned long nbr, unsigned int base, char *hex, int *p)
 {
 	if (nbr >= base)
 	{
-		ft_put_hex(nbr / base, base, hex);
-		ft_put_hex(nbr % base, base, hex);
+		ft_put_hex(nbr / base, base, hex, p);
+		ft_put_hex(nbr % base, base, hex, p);
 	}
 	else
-		ft_put_char(hex[nbr % base]);
-	return (ft_len(nbr, base));
+		ft_put_char(hex[nbr % base], p);
 }
 
-int	ft_put_nbr(int nbr)
+void	ft_put_nbr(int nbr, int *p)
 {
 	if (nbr == -2147483648)
-	{
-		ft_put_str("-2147483648");
-		return (11);
-	}
+		ft_put_str("-2147483648", p);
 	else if (nbr < 0)
 	{
-		ft_put_char('-');
-		ft_put_hex(-nbr, 10, DEC);
-		return (ft_len(-nbr, 10) + 1);
+		ft_put_char('-', p);
+		ft_put_hex(-nbr, 10, DEC, p);
 	}
 	else
-		ft_put_hex(nbr, 10, DEC);
-	return (ft_len(nbr, 10));
-}
-
-int	ft_len(unsigned long nbr, int base)
-{
-	int	len;
-
-	len = 0;
-	if (nbr == 0)
-		return (1);
-	while (nbr > 0)
-	{
-		nbr /= base;
-		len++;
-	}
-	return (len);
+		ft_put_hex(nbr, 10, DEC, p);
 }
