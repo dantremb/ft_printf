@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 07:52:43 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/29 23:45:57 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/05/01 00:12:36 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 int	ft_printf(const char *str, ...)
 {
 	va_list	arg;
-	int		i;
 	int		len;
 
 	va_start(arg, str);
-	i = 0;
 	len = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == '%')
-			ft_choose_arg(str[i++ + 1], arg, &len);
+		if (*str == '%')
+			ft_choose_arg(*(str++ + 1), arg, &len);
 		else
-			ft_put_char(str[i], &len);
-		i++;
+			ft_put_char(*str, &len);
+		str++;
 	}
 	va_end(arg);
 	return (len);

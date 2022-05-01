@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/04/29 23:44:08 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/05/01 00:01:28 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@ void	ft_put_char(char src, int *p)
 
 void	ft_put_str(const char *str, int *p)
 {
-	int	i;
-
-	i = -1;
 	if (!str)
 		ft_put_str("(null)", p);
 	else
-		while (str[++i] != '\0')
-			ft_put_char(str[i], p);
+		while (*str)
+			ft_put_char(*str++, p);
 }
 
 void	ft_put_ptr(unsigned long ptr, int *p)
