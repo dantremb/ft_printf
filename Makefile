@@ -6,7 +6,7 @@
 #    By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 23:33:38 by root              #+#    #+#              #
-#    Updated: 2022/05/02 10:35:03 by dantremb         ###   ########.fr        #
+#    Updated: 2022/05/02 11:51:10 by dantremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
 REMOVE = rm -f
+
+COMMIT = "dantremb"
 
 all: $(NAME)
 
@@ -45,3 +47,9 @@ fclean: clean
 	$(REMOVE) $(NAME)
 
 re:	fclean all
+
+git:
+	@(git add .)
+	@(git commit -m $(COMMIT))
+	@(git push)
+	
