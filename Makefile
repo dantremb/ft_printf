@@ -6,7 +6,7 @@
 #    By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 23:33:38 by root              #+#    #+#              #
-#    Updated: 2022/04/28 13:04:21 by dantremb         ###   ########.fr        #
+#    Updated: 2022/05/02 10:35:03 by dantremb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 		
-git:
-	@(git add .)
-	@(git commit -m "dantremb")
-	@(git push)
-	
 test:
 	clear
 	@(gcc -Wall -Wextra -Werror main.c ft_printf.c ft_printf_utils.c)
