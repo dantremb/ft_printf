@@ -6,7 +6,7 @@
 /*   By: dantremb <dantremb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 11:19:53 by dantremb          #+#    #+#             */
-/*   Updated: 2022/05/01 00:01:28 by dantremb         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:19:02 by dantremb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_put_str(const char *str, int *p)
 void	ft_put_ptr(unsigned long ptr, int *p)
 {
 	ft_put_str("0x", p);
-	if (ptr == 0)
-		ft_put_char('0', p);
 	ft_put_hex(ptr, 16, HEXL, p);
 }
 
