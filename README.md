@@ -1,2 +1,3 @@
 # ft_printf
-Print stuff !!!
+Une bibliothèque qui contient ft_printf(), une
+fonction imitant la fonction printf() originale
