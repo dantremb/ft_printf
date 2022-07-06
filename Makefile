@@ -10,67 +10,65 @@
 #                                                                              #
 # **************************************************************************** #
 
+# Nom du Projet
 NAME = libftprintf.a
 
-# Fichiers sources.
-SRCS_FILES = ft_printf.c ft_printf_utils.c
-
-# Ajoute le noms du dossier en avant de chaque sources.
-SRCS_PATH = srcs/
-SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
-
-# Compilateurs
+# Flags
 AR = ar
 CC = gcc
-
-# Flags
 ARFLAGS = rcs
 CFLAGS = -Wall -Wextra -Werror -g
 
-# Macros
-REMOVE = rm -rf
-COMMIT = $(shell date "+%d %B %T")
+# Sources files
+S = srcs/
+SRCS_FILES = ft_printf.c \
+			ft_printf_utils.c
+SRCS = $(addprefix $S, $(SRCS_FILES))
 
-# Transforme les fichiers .c en fichiers .o
-# La premiere utilise le contenu de la 2e pour compiler.
-# J'imprime un tiret (sans newline) pour créer ma ligne de progression.
-OBJS= $(SRCS:%.c=%.o)
-%.o: %.c
-	@printf "-"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+# Objects conversion
+O = objs/
+OBJS= $(SRCS:$S%=$O%.o)
+$O%.o: $S%
+	@printf "$R■$W"
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
-# On appel la commande INIT et NAME puis on imprime le message final.
-all: init $(NAME)
-	@echo "> Done!."
-	@echo "$(NAME) Compiled!"
+# Main rule
+all: signature init $(NAME)
+	@echo "$G\n$(NAME) Compiled!$W"
 
-# On imprime le début de la compilation à l'écran (sans newline).
+# Initialise librairies and making objs folder
 init:
-	@printf "Compiling -"
+	@mkdir -p $O
+	@printf "$CCreating $(NAME)\n$W"
 
-# On appel la création des OBJS et ensuite on compile la librairie.
+# Creating  library
 $(NAME): $(OBJS)
 	@$(AR) $(ARFLAGS) $@ $^
 
-# Commande de nettoyage.
+# Cleaning
+REMOVE = rm -rf
+
 clean:
-	@$(REMOVE) $(OBJS)
+	@$(REMOVE) $O
+
 fclean: clean
 	@$(REMOVE) $(NAME)
 
-# On nettoie et recompile.
 re:	fclean all
 
-# On peut choisir le nom de commit avec "make git COMMIT="
+# Utilities
+COMMIT = $(shell date "+%d %B %T")
 git:
-	git add .
-	git commit -m "$(COMMIT)"
-	git push
+	@git add .
+	@git commit -m "$(COMMIT)"
+	@git push
 
-# Test le programme avec mon main.c
-test:
-	@clear
-	@$(CC) $(CFLAGS) main.c $(SRCS)
-	@(./out)
-	@$(REMOVE) $(OBJS)
-	@$(REMOVE) ./out
+R = $(shell tput -Txterm setaf 1)
+G = $(shell tput -Txterm setaf 2)
+C = $(shell tput -Txterm setaf 6)
+W = $(shell tput -Txterm setaf 7)
+
+signature:
+	@echo "\n$G+---+---+---+---+---+---+---+---+---+---+"
+	@echo "$G|$C	$(NAME) by Dantremb	$G|"
+	@echo "$G+---+---+---+---+---+---+---+---+---+---+"
